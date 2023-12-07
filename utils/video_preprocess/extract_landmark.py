@@ -3,7 +3,7 @@ import numpy as np
 import torch
 
 
-detector = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D)
+detector = face_alignment.FaceAlignment(face_alignment.LandmarksType.TWO_D)
 
 mean_landmark = np.array([[264., 460.],
        [264., 540.],
@@ -94,5 +94,6 @@ def get_landmark(images):
         except:
             lm = mean_landmark
             lms_np.append(lm)
+    print('lms_np: ', lms_np)
     lms_np = np.stack(lms_np)  # B, 68, 2
     return lms_np

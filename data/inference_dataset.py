@@ -95,6 +95,7 @@ class TempVideoDataset:
             frames_pil = video_util.read_video(video_path, resize=256)
 
             save_3dmm_path = os.path.join(os.path.dirname(video_path), '3dmm', '3dmm_' + video_name + '.npy')
+            print('save_3dmm_path: ', save_3dmm_path)
             if not os.path.exists(save_3dmm_path):
                 os.makedirs(os.path.join(os.path.dirname(video_path), '3dmm'), exist_ok=True)
                 lm_np = get_landmark(frames_pil)
@@ -119,6 +120,7 @@ class TempVideoDataset:
                 os.makedirs(os.path.join(os.path.dirname(image_path), '3dmm'), exist_ok=True)
                 lm_np = get_landmark([src_image_pil_256])
                 # print(lm_np.shape)
+                print('src_image_pil_256:', self.model_3dmm)
                 source_3dmm = self.model_3dmm.get_3dmm([src_image_pil_256], lm_np)
                 # print(coeff_3dmm.shape)
                 np.save(source_3dmm_path, source_3dmm)
